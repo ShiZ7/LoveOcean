@@ -3,76 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Scene for You</title>
+    <title>Ocean Paradise</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Dancing+Script:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
 
         * {
             margin: 0;
-            padding: 0; 
+            padding: 0;
             box-sizing: border-box;
         }
 
         html, body {
-            height: 100%;
             width: 100%;
+            height: 100%;
             overflow: hidden;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Playfair Display', serif;
         }
 
-        .scene-container {
+        .scene {
             width: 100vw;
             height: 100vh;
             position: relative;
             overflow: hidden;
         }
 
+        /* Sky */
         .sky {
+            position: absolute;
             width: 100%;
             height: 100%;
-            position: absolute;
-            top: 0;
-            left: 0;
-            background: linear-gradient(135deg, #FFE5B4 0%, #FFD4A3 15%, #FFBB88 25%, #E8C4D4 50%, #B0C4DE 75%, #87CEEB 100%);
-            transition: background 2.5s ease;
+            background: 
+                radial-gradient(ellipse 40% 50% at 8% 18%, 
+                    #FFFEF8 0%,
+                    #FFF8E8 3%,
+                    #FFEFD5 6%,
+                    #FFE4C0 10%,
+                    transparent 20%),
+                linear-gradient(to right,
+                    #FFECD2 0%,
+                    #FFE0B8 5%,
+                    #FFD4A0 10%,
+                    #FFC48C 15%,
+                    #FFB578 18%,
+                    #E8B8CC 30%,
+                    #D8ACCC 38%,
+                    #C8A0CC 45%,
+                    #B8B8DD 55%,
+                    #A8C0E8 65%,
+                    #98C8F0 75%,
+                    #88CCEB 85%,
+                    #87CEEB 100%);
+            transition: background 3s ease;
             z-index: 1;
         }
 
+        /* Sun */
         .sun {
             position: absolute;
-            top: 15%;
-            left: 8%;
-            width: 120px;
-            height: 120px;
-            background: radial-gradient(circle, #FFF9E6 0%, #FFE680 30%, #FFD700 60%, #FFA500 100%);
+            top: 12%;
+            left: 6%;
+            width: 130px;
+            height: 130px;
             border-radius: 50%;
+            background: 
+                radial-gradient(circle at 38% 38%,
+                    #FFFFFF 0%,
+                    #FFFEF5 8%,
+                    #FFF9E8 15%,
+                    #FFF3D0 22%,
+                    #FFECB8 30%,
+                    #FFE49F 40%,
+                    #FFDB86 50%,
+                    #FFD06D 60%,
+                    #FFC454 70%,
+                    #FFB83B 80%,
+                    #FFAA22 90%,
+                    #FF9900 100%);
             box-shadow: 
-                0 0 40px 20px rgba(255, 247, 0, 0.6),
-                0 0 80px 40px rgba(255, 200, 0, 0.4),
-                0 0 120px 60px rgba(255, 165, 0, 0.2);
-            opacity: 1;
-            transition: all 2.5s ease;
+                0 0 25px 12px rgba(255, 252, 235, 0.95),
+                0 0 50px 25px rgba(255, 245, 200, 0.8),
+                0 0 85px 42px rgba(255, 230, 150, 0.6),
+                0 0 130px 65px rgba(255, 200, 100, 0.4),
+                0 0 180px 90px rgba(255, 170, 50, 0.25),
+                inset -15px -15px 35px rgba(255, 200, 100, 0.25);
+            transition: all 3s ease;
             z-index: 2;
+            animation: sun-glow 7s infinite ease-in-out;
         }
 
+        @keyframes sun-glow {
+            0%, 100% { 
+                transform: scale(1); 
+                filter: brightness(1);
+                box-shadow: 
+                    0 0 25px 12px rgba(255, 252, 235, 0.95),
+                    0 0 50px 25px rgba(255, 245, 200, 0.8),
+                    0 0 85px 42px rgba(255, 230, 150, 0.6),
+                    0 0 130px 65px rgba(255, 200, 100, 0.4),
+                    0 0 180px 90px rgba(255, 170, 50, 0.25);
+            }
+            50% { 
+                transform: scale(1.02); 
+                filter: brightness(1.08);
+                box-shadow: 
+                    0 0 30px 15px rgba(255, 252, 235, 1),
+                    0 0 60px 30px rgba(255, 245, 200, 0.9),
+                    0 0 100px 50px rgba(255, 230, 150, 0.7),
+                    0 0 150px 75px rgba(255, 200, 100, 0.5),
+                    0 0 200px 100px rgba(255, 170, 50, 0.3);
+            }
+        }
+
+        /* Moon */
         .moon {
             position: absolute;
-            top: 15%;
-            right: 12%;
-            width: 80px;
-            height: 80px;
-            background: radial-gradient(circle at 30% 30%, #FFFACD 0%, #F0E68C 50%, #DAA520 100%);
+            top: 12%;
+            right: 10%;
+            width: 85px;
+            height: 85px;
             border-radius: 50%;
-            box-shadow: 0 0 40px 15px rgba(240, 230, 140, 0.5);
+            background: 
+                radial-gradient(circle at 38% 38%,
+                    #FFFEF8 0%,
+                    #FFF8E8 25%,
+                    #F5E8D0 50%,
+                    #E8D8B8 75%,
+                    #D8C8A0 100%);
+            box-shadow: 
+                0 0 35px 18px rgba(255, 250, 230, 0.5),
+                0 0 70px 35px rgba(240, 230, 140, 0.25),
+                inset -8px -8px 18px rgba(139, 115, 85, 0.15);
             opacity: 0;
-            transition: all 2.5s ease;
+            transform: scale(0) translateY(-50px);
+            transition: all 3s ease;
             z-index: 2;
         }
 
-        #stars-container {
+        /* Stars */
+        #stars {
+            position: absolute;
             width: 100%;
             height: 100%;
-            position: absolute;
             top: 0;
             left: 0;
             z-index: 1;
@@ -82,28 +153,34 @@
             position: absolute;
             background: #FFF;
             border-radius: 50%;
-            animation: twinkle 3s infinite ease-in-out;
+            box-shadow: 0 0 3px 1px rgba(255, 255, 255, 0.6);
             opacity: 0;
-            transition: opacity 2s ease;
+            transition: opacity 3s ease;
         }
 
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.2; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.2); }
+        @keyframes star-twinkle {
+            0%, 100% { opacity: 0.25; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.25); }
         }
 
+        /* Ocean */
         .ocean {
-            width: 100%;
-            height: 55%;
             position: absolute;
             bottom: 0;
             left: 0;
-            background: linear-gradient(to bottom, 
-                #4A90A4 0%, 
-                #3A7D99 30%, 
-                #2A6B85 60%, 
-                #1A5570 100%);
-            transition: background 2.5s ease;
+            width: 100%;
+            height: 58%;
+            background: 
+                linear-gradient(to bottom,
+                    #5BA8C0 0%,
+                    #4A98B0 15%,
+                    #3A88A0 30%,
+                    #2A7890 45%,
+                    #1A6880 60%,
+                    #0A5870 75%,
+                    #004860 90%,
+                    #003850 100%);
+            transition: background 3s ease;
             z-index: 2;
             overflow: hidden;
         }
@@ -111,164 +188,246 @@
         .ocean::before {
             content: '';
             position: absolute;
-            width: 200%;
+            width: 300%;
             height: 100%;
-            left: 0;
             top: 0;
+            left: 0;
             background: 
                 repeating-linear-gradient(90deg,
                     transparent 0px,
-                    rgba(255,255,255,0.03) 50px,
-                    transparent 100px);
-            animation: wave-motion 15s infinite linear;
+                    rgba(255, 255, 255, 0.018) 35px,
+                    transparent 70px,
+                    rgba(255, 255, 255, 0.012) 105px,
+                    transparent 140px);
+            animation: ocean-move 22s infinite linear;
         }
 
-        @keyframes wave-motion {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        .glare {
+        .ocean::after {
+            content: '';
             position: absolute;
-            top: -15%;
-            left: 8%;
-            width: 18%;
-            height: 130%;
+            width: 300%;
+            height: 100%;
+            top: 0;
+            left: 0;
             background: 
-                radial-gradient(ellipse at center top, 
-                    rgba(255, 252, 230, 0.9) 0%,
-                    rgba(255, 245, 200, 0.7) 15%,
-                    rgba(255, 235, 150, 0.5) 30%,
-                    rgba(255, 220, 100, 0.3) 50%,
-                    rgba(255, 200, 80, 0.15) 70%,
-                    transparent 100%);
-            transform: skewX(-8deg);
-            filter: blur(8px);
-            opacity: 0.85;
-            animation: shimmer-glare 4s infinite alternate ease-in-out;
-            transition: all 2.5s ease;
-            z-index: 3;
+                repeating-linear-gradient(90deg,
+                    transparent 0px,
+                    rgba(255, 255, 255, 0.01) 50px,
+                    transparent 100px);
+            animation: ocean-move 16s infinite linear reverse;
         }
 
-        @keyframes shimmer-glare {
+        @keyframes ocean-move {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-33.33%); }
+        }
+
+        /* Sun glare on water */
+        .sun-glare {
+            position: absolute;
+            top: -8%;
+            left: 3.5%;
+            width: 18%;
+            height: 115%;
+            background: 
+                radial-gradient(ellipse 100% 100% at 50% 0%,
+                    rgba(255, 255, 248, 0.98) 0%,
+                    rgba(255, 254, 240, 0.92) 5%,
+                    rgba(255, 252, 230, 0.86) 10%,
+                    rgba(255, 248, 210, 0.78) 15%,
+                    rgba(255, 245, 195, 0.70) 20%,
+                    rgba(255, 240, 175, 0.62) 25%,
+                    rgba(255, 235, 155, 0.54) 30%,
+                    rgba(255, 228, 135, 0.46) 35%,
+                    rgba(255, 220, 115, 0.38) 40%,
+                    rgba(255, 210, 95, 0.30) 45%,
+                    rgba(255, 200, 75, 0.22) 52%,
+                    rgba(255, 190, 60, 0.16) 60%,
+                    rgba(255, 180, 45, 0.10) 70%,
+                    rgba(255, 170, 35, 0.05) 80%,
+                    transparent 100%);
+            transform: skewX(-5deg);
+            filter: blur(10px);
+            animation: glare-move 4.5s infinite alternate ease-in-out;
+            transition: opacity 3s ease, transform 3s ease;
+            z-index: 3;
+            mix-blend-mode: screen;
+            pointer-events: none;
+        }
+
+        @keyframes glare-move {
             0% { 
-                opacity: 0.75; 
-                transform: skewX(-8deg) scaleY(0.95);
-                filter: blur(8px);
+                opacity: 0.88; 
+                transform: skewX(-5deg) scaleY(0.97) translateY(0);
+                filter: blur(10px);
             }
             100% { 
-                opacity: 0.95; 
-                transform: skewX(-10deg) scaleY(1.02);
-                filter: blur(6px);
+                opacity: 0.98; 
+                transform: skewX(-7deg) scaleY(1.01) translateY(-1.5%);
+                filter: blur(8px);
             }
         }
 
-        .glare.moonlight {
-            left: 50%;
-            width: 25%;
-            background: 
-                radial-gradient(ellipse at center top, 
-                    rgba(240, 248, 255, 0.5) 0%,
-                    rgba(230, 240, 250, 0.3) 30%,
-                    rgba(200, 220, 240, 0.15) 60%,
-                    transparent 100%);
-            opacity: 0;
-        }
-
-        .land {
-            width: 100%;
-            height: 65%;
+        /* Moon glare */
+        .moon-glare {
             position: absolute;
-            bottom: 0;
-            right: 0;
-            background: linear-gradient(to bottom, #5D9C59 0%, #4A7C4E 50%, #3D6B3F 100%);
-            clip-path: polygon(0% 75%, 100% 30%, 100% 100%, 0% 100%);
-            z-index: 4;
-            transition: background 2.5s ease;
+            top: -5%;
+            right: 12%;
+            width: 28%;
+            height: 110%;
+            background: 
+                radial-gradient(ellipse 100% 100% at 50% 0%,
+                    rgba(250, 250, 255, 0.48) 0%,
+                    rgba(245, 248, 255, 0.36) 15%,
+                    rgba(235, 240, 250, 0.24) 30%,
+                    rgba(225, 235, 245, 0.14) 50%,
+                    rgba(215, 230, 240, 0.06) 70%,
+                    transparent 100%);
+            transform: skewX(-4deg);
+            filter: blur(14px);
+            opacity: 0;
+            transition: opacity 3s ease, transform 3s ease;
+            z-index: 3;
+            pointer-events: none;
         }
 
+        /* Water sparkles */
+        .sparkle {
+            position: absolute;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.85) 0%, transparent 65%);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: sparkle-shine 3s infinite ease-in-out;
+        }
+
+        @keyframes sparkle-shine {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+
+        /* Land - massive foreground */
+        .land {
+            position: absolute;
+            bottom: -3%;
+            right: 0;
+            width: 100%;
+            height: 72%;
+            background: 
+                linear-gradient(165deg,
+                    #70B566 0%,
+                    #68AD5E 12%,
+                    #60A556 24%,
+                    #589D4E 36%,
+                    #509546 48%,
+                    #488D3E 60%,
+                    #408536 72%,
+                    #387D2E 84%,
+                    #307526 96%);
+            clip-path: polygon(0% 70%, 100% 24%, 100% 100%, 0% 100%);
+            transition: background 3s ease;
+            z-index: 4;
+        }
+
+        /* Grass texture */
         .land::before {
             content: '';
             position: absolute;
             width: 100%;
             height: 100%;
-            background: 
-                repeating-linear-gradient(90deg,
+            background-image: 
+                repeating-linear-gradient(92deg,
                     transparent 0px,
-                    rgba(0,0,0,0.02) 2px,
-                    transparent 4px),
-                repeating-linear-gradient(0deg,
+                    rgba(0, 0, 0, 0.012) 1px,
+                    transparent 2px),
+                repeating-linear-gradient(2deg,
                     transparent 0px,
-                    rgba(0,0,0,0.02) 2px,
-                    transparent 4px);
-            pointer-events: none;
+                    rgba(0, 0, 0, 0.015) 1px,
+                    transparent 2px),
+                repeating-linear-gradient(178deg,
+                    transparent 0px,
+                    rgba(255, 255, 255, 0.008) 1px,
+                    transparent 3px);
+            opacity: 0.9;
+            mix-blend-mode: multiply;
         }
 
-        #flower-container {
+        /* Land shading */
+        .land::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse 180% 100% at 85% 25%,
+                    transparent 0%,
+                    rgba(0, 0, 0, 0.08) 45%,
+                    rgba(0, 0, 0, 0.16) 100%);
+            opacity: 0.5;
+        }
+
+        /* Flowers container */
+        .flowers {
             position: absolute;
             width: 100%;
             height: 100%;
             top: 0;
             left: 0;
+            z-index: 5;
         }
 
         .flower {
             position: absolute;
             transform-origin: bottom center;
-            transition: filter 2.5s ease;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+            filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.22));
+            transition: filter 3s ease;
+            will-change: transform;
         }
 
-        .flower.tulip {
-            width: 30px;
-            height: 90px;
-        }
+        .tulip { width: 26px; height: 80px; }
+        .rose { width: 30px; height: 85px; }
+        .peony { width: 34px; height: 90px; }
 
-        .flower.rose {
-            width: 35px;
-            height: 95px;
-        }
-
-        .flower.peony {
-            width: 40px;
-            height: 100px;
-        }
-
-        .flower svg {
-            width: 100%;
-            height: 100%;
-        }
-
+        /* Swaying animations */
         @keyframes sway-1 {
-            0%, 100% { transform: rotate(-3deg) translateX(-2px); }
-            50% { transform: rotate(4deg) translateX(2px); }
+            0%, 100% { transform: rotate(-3.5deg) translateX(-1.2px); }
+            25% { transform: rotate(0.8deg) translateX(0.4px); }
+            50% { transform: rotate(4.2deg) translateX(1.3px); }
+            75% { transform: rotate(1deg) translateX(0.6px); }
         }
 
         @keyframes sway-2 {
-            0%, 100% { transform: rotate(-4deg) translateX(-1px); }
-            50% { transform: rotate(3deg) translateX(1px); }
+            0%, 100% { transform: rotate(-4deg) translateX(-1.5px); }
+            30% { transform: rotate(1.5deg) translateX(0.8px); }
+            65% { transform: rotate(4.8deg) translateX(1.6px); }
         }
 
         @keyframes sway-3 {
-            0%, 100% { transform: rotate(-2deg) translateX(-3px); }
-            50% { transform: rotate(5deg) translateX(3px); }
+            0%, 100% { transform: rotate(-2.8deg) translateX(-1px); }
+            35% { transform: rotate(2deg) translateX(1px); }
+            70% { transform: rotate(5.2deg) translateX(1.8px); }
         }
 
-        #bird-container {
+        @keyframes sway-4 {
+            0%, 100% { transform: rotate(-3.2deg) translateX(-1.3px); }
+            28% { transform: rotate(1.2deg) translateX(0.7px); }
+            58% { transform: rotate(4.5deg) translateX(1.5px); }
+        }
+
+        /* Birds */
+        .birds {
             position: absolute;
             width: 100%;
-            height: 50%;
+            height: 48%;
             top: 0;
             left: 0;
-            z-index: 5;
+            z-index: 6;
             pointer-events: none;
         }
 
         .bird {
             position: absolute;
-            fill: #FFFFFF;
-            filter: drop-shadow(1px 2px 3px rgba(0,0,0,0.3));
-            transition: fill 2s ease;
+            filter: drop-shadow(1px 2px 3px rgba(0, 0, 0, 0.28));
+            transition: filter 2.5s ease;
         }
 
         .bird svg {
@@ -276,156 +435,131 @@
             height: 100%;
         }
 
-        @keyframes fly-path-1 {
-            0% { 
-                left: -10%; 
-                top: 15%;
-                transform: scale(0.7) rotate(-5deg);
-            }
-            50% { 
-                top: 25%;
-                transform: scale(1) rotate(0deg);
-            }
-            100% { 
-                left: 110%; 
-                top: 20%;
-                transform: scale(0.8) rotate(5deg);
-            }
+        @keyframes fly-1 {
+            0% { left: -7%; top: 13%; transform: scale(0.58) rotate(-2deg); }
+            20% { top: 19%; transform: scale(0.82) rotate(1deg); }
+            50% { top: 16%; transform: scale(1.08) rotate(0deg); }
+            80% { top: 21%; transform: scale(0.76) rotate(2deg); }
+            100% { left: 107%; top: 18%; transform: scale(0.62) rotate(3deg); }
         }
 
-        @keyframes fly-path-2 {
-            0% { 
-                left: -10%; 
-                top: 25%;
-                transform: scale(0.6) rotate(-3deg);
-            }
-            50% { 
-                top: 20%;
-                transform: scale(0.9) rotate(2deg);
-            }
-            100% { 
-                left: 110%; 
-                top: 30%;
-                transform: scale(0.7) rotate(3deg);
-            }
+        @keyframes fly-2 {
+            0% { left: -7%; top: 23%; transform: scale(0.48) rotate(-3deg); }
+            25% { top: 18%; transform: scale(0.72) rotate(0deg); }
+            75% { top: 26%; transform: scale(0.68) rotate(-1deg); }
+            100% { left: 107%; top: 21%; transform: scale(0.52) rotate(1deg); }
         }
 
-        @keyframes fly-path-3 {
-            0% { 
-                left: -10%; 
-                top: 10%;
-                transform: scale(0.8) rotate(-2deg);
-            }
-            50% { 
-                top: 18%;
-                transform: scale(1.1) rotate(0deg);
-            }
-            100% { 
-                left: 110%; 
-                top: 15%;
-                transform: scale(0.9) rotate(4deg);
-            }
+        @keyframes fly-3 {
+            0% { left: -7%; top: 9%; transform: scale(0.68) rotate(-4deg); }
+            35% { top: 15%; transform: scale(0.98) rotate(0deg); }
+            70% { top: 13%; transform: scale(0.88) rotate(2deg); }
+            100% { left: 107%; top: 17%; transform: scale(0.58) rotate(1deg); }
         }
 
-        @keyframes wing-flap {
-            0%, 100% { transform: rotateX(0deg) scaleY(1); }
-            25% { transform: rotateX(-20deg) scaleY(0.8); }
-            75% { transform: rotateX(20deg) scaleY(0.8); }
+        @keyframes fly-4 {
+            0% { left: -7%; top: 28%; transform: scale(0.42) rotate(-1deg); }
+            30% { top: 22%; transform: scale(0.65) rotate(1deg); }
+            70% { top: 30%; transform: scale(0.60) rotate(-2deg); }
+            100% { left: 107%; top: 25%; transform: scale(0.45) rotate(0deg); }
         }
 
-        .letter-button {
+        /* UI */
+        .heart-button {
             position: absolute;
-            top: 40px;
-            right: 40px;
-            padding: 15px 30px;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            border: 2.5px solid rgba(255, 255, 255, 0.8);
-            border-radius: 30px;
+            top: 32px;
+            right: 32px;
+            padding: 13px 26px;
+            background: rgba(255, 255, 255, 0.16);
+            backdrop-filter: blur(11px);
+            border: 2.5px solid rgba(255, 255, 255, 0.88);
+            border-radius: 32px;
             color: #FFF;
-            font-family: 'Poppins', sans-serif;
+            font-size: 0.92rem;
             font-weight: 600;
-            font-size: 0.95rem;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            letter-spacing: 0.3px;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.38);
             cursor: pointer;
+            transition: all 0.32s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 100;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.14);
         }
 
-        .letter-button:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: scale(1.08) translateY(-2px);
-            box-shadow: 0 0 25px rgba(255,255,255,0.6), 0 6px 20px rgba(0,0,0,0.15);
+        .heart-button:hover {
+            background: rgba(255, 255, 255, 0.32);
+            transform: scale(1.07) translateY(-2px);
+            box-shadow: 0 0 28px rgba(255, 255, 255, 0.68), 0 7px 22px rgba(0, 0, 0, 0.18);
         }
 
-        .day-night-toggle {
+        .mode-toggle {
             position: absolute;
-            top: 110px;
-            right: 40px;
-            width: 55px;
-            height: 55px;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            border: 2.5px solid rgba(255, 255, 255, 0.8);
+            top: 100px;
+            right: 32px;
+            width: 54px;
+            height: 54px;
+            background: rgba(255, 255, 255, 0.16);
+            backdrop-filter: blur(11px);
+            border: 2.5px solid rgba(255, 255, 255, 0.88);
             border-radius: 50%;
-            color: #FFF;
-            font-size: 1.6rem;
+            font-size: 1.65rem;
             cursor: pointer;
-            z-index: 100;
-            transition: all 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 100;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.14);
         }
 
-        .day-night-toggle:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: scale(1.1) rotate(15deg);
-            box-shadow: 0 0 25px rgba(255,255,255,0.6);
+        .mode-toggle:hover {
+            background: rgba(255, 255, 255, 0.32);
+            transform: scale(1.1) rotate(18deg);
+            box-shadow: 0 0 28px rgba(255, 255, 255, 0.68);
         }
 
-        .modal-overlay {
+        /* Modal */
+        .modal {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(5px);
-            z-index: 200;
+            background: rgba(0, 0, 0, 0.72);
+            backdrop-filter: blur(7px);
             display: flex;
             align-items: center;
             justify-content: center;
             opacity: 0;
             pointer-events: none;
-            transition: opacity 0.5s ease;
+            transition: opacity 0.48s ease;
+            z-index: 200;
         }
 
-        .modal-overlay.active {
+        .modal.show {
             opacity: 1;
             pointer-events: all;
         }
 
-        .letter-modal {
-            background: linear-gradient(135deg, #FFF9F0 0%, #FFF5E6 100%);
-            border-radius: 15px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-            width: 90%;
-            max-width: 550px;
-            padding: 50px;
+        .letter {
+            background: linear-gradient(138deg, #FFFCF8 0%, #FFF9F0 50%, #FFF6E8 100%);
+            border-radius: 16px;
+            padding: 52px;
+            max-width: 570px;
+            width: 91%;
             position: relative;
-            transform: scale(0.7) translateY(50px);
-            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-            border: 3px solid rgba(139, 69, 19, 0.1);
+            box-shadow: 
+                0 22px 75px rgba(0, 0, 0, 0.58),
+                inset 0 1px 0 rgba(255, 255, 255, 0.48);
+            border: 2.5px solid rgba(139, 90, 43, 0.14);
+            transform: scale(0.72) rotateX(18deg);
+            transition: transform 0.58s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
-        .modal-overlay.active .letter-modal {
-            transform: scale(1) translateY(0);
+        .modal.show .letter {
+            transform: scale(1) rotateX(0deg);
         }
 
-        .letter-modal::before {
+        .letter::before {
             content: '';
             position: absolute;
             top: 0;
@@ -434,374 +568,370 @@
             bottom: 0;
             background: 
                 repeating-linear-gradient(0deg,
-                    transparent,
-                    transparent 25px,
-                    rgba(139, 69, 19, 0.03) 25px,
-                    rgba(139, 69, 19, 0.03) 26px);
+                    transparent 0px,
+                    transparent 27px,
+                    rgba(139, 90, 43, 0.038) 27px,
+                    rgba(139, 90, 43, 0.038) 28px);
             pointer-events: none;
-            border-radius: 15px;
+            border-radius: 16px;
         }
 
-        .letter-modal h2 {
-            font-family: 'Dancing Script', cursive;
+        .letter h2 {
             font-size: 2.5rem;
-            color: #8B4513;
-            margin-bottom: 25px;
+            color: #6B4423;
+            margin-bottom: 26px;
             font-weight: 700;
+            font-style: italic;
         }
 
-        .letter-modal p {
-            font-family: 'Dancing Script', cursive;
-            font-size: 1.3rem;
-            color: #2C1810;
-            line-height: 2;
-            margin-bottom: 25px;
+        .letter p {
+            font-size: 1.22rem;
+            color: #3A2817;
+            line-height: 2.05;
+            margin-bottom: 26px;
         }
 
-        .letter-modal .signature {
+        .letter .sign {
             text-align: right;
             font-style: italic;
-            color: #8B4513;
-            font-size: 1.4rem;
+            color: #6B4423;
+            font-size: 1.32rem;
+            margin-top: 32px;
         }
 
-        .close-button {
+        .close {
             position: absolute;
             top: 20px;
             right: 20px;
-            width: 35px;
-            height: 35px;
-            background: rgba(139, 69, 19, 0.1);
+            width: 36px;
+            height: 36px;
+            background: rgba(139, 90, 43, 0.11);
             border: none;
             border-radius: 50%;
-            font-size: 1.5rem;
-            color: #8B4513;
+            font-size: 1.55rem;
+            color: #6B4423;
             cursor: pointer;
-            transition: all 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: all 0.28s ease;
         }
 
-        .close-button:hover {
-            background: rgba(139, 69, 19, 0.2);
-            transform: rotate(90deg) scale(1.1);
+        .close:hover {
+            background: rgba(139, 90, 43, 0.23);
+            transform: rotate(90deg) scale(1.13);
         }
 
-        .scene-container.night-mode .sky {
-            background: linear-gradient(to bottom, 
-                #0a0a1f 0%, 
-                #1a1a3e 30%, 
-                #2a2a5e 60%, 
-                #1a1a3e 100%);
+        /* Night mode */
+        .scene.night .sky {
+            background: 
+                radial-gradient(ellipse 35% 45% at 85% 15%,
+                    rgba(180, 180, 220, 0.12) 0%,
+                    transparent 28%),
+                linear-gradient(to bottom,
+                    #0A0A1D 0%,
+                    #12122C 22%,
+                    #1A1A3C 44%,
+                    #22224C 66%,
+                    #1A1A3C 88%,
+                    #12122C 100%);
         }
 
-        .scene-container.night-mode .sun {
+        .scene.night .sun {
             opacity: 0;
-            transform: scale(0);
+            transform: scale(0) translateY(50px);
         }
 
-        .scene-container.night-mode .moon {
+        .scene.night .moon {
             opacity: 1;
-            transform: scale(1);
+            transform: scale(1) translateY(0);
         }
 
-        .scene-container.night-mode .star {
+        .scene.night .star {
             opacity: 1;
+            animation: star-twinkle 3s infinite ease-in-out;
         }
 
-        .scene-container.night-mode .ocean {
-            background: linear-gradient(to bottom, 
-                #001a33 0%, 
-                #000d1a 50%, 
-                #000508 100%);
+        .scene.night .ocean {
+            background: 
+                linear-gradient(to bottom,
+                    #002540 0%,
+                    #001D33 20%,
+                    #001526 40%,
+                    #000D1A 60%,
+                    #00050D 80%,
+                    #000000 100%);
         }
 
-        .scene-container.night-mode .glare {
-            opacity: 0;
+        .scene.night .sun-glare {
+            opacity: 0 !important;
+            transform: skewX(-5deg) scale(0);
         }
 
-        .scene-container.night-mode .glare.moonlight {
-            opacity: 0.7;
+        .scene.night .moon-glare {
+            opacity: 0.75;
+            transform: skewX(-4deg) scale(1);
         }
 
-        .scene-container.night-mode .land {
-            background: linear-gradient(to bottom, #2d4a2d 0%, #1e3a1e 50%, #0f2a0f 100%);
+        .scene.night .land {
+            background: 
+                linear-gradient(165deg,
+                    #2D5A2C 0%,
+                    #285224 15%,
+                    #234A1C 30%,
+                    #1E4214 45%,
+                    #193A0C 60%,
+                    #143204 75%,
+                    #0F2A00 90%);
         }
 
-        .scene-container.night-mode .flower {
-            filter: brightness(0.5) saturate(0.6) drop-shadow(0 2px 4px rgba(0,0,0,0.4));
+        .scene.night .flower {
+            filter: brightness(0.42) saturate(0.58) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.48));
         }
 
-        .scene-container.night-mode .bird {
-            fill: #1a1a1a;
+        .scene.night .bird {
+            filter: brightness(0.18) drop-shadow(1px 2px 2px rgba(0, 0, 0, 0.4));
         }
 
         @media (max-width: 768px) {
-            .letter-button {
-                top: 20px;
-                right: 20px;
-                padding: 12px 20px;
-                font-size: 0.85rem;
-            }
-
-            .day-night-toggle {
-                top: 80px;
-                right: 20px;
-                width: 45px;
-                height: 45px;
-                font-size: 1.3rem;
-            }
-
-            .letter-modal {
-                padding: 35px;
-                max-width: 95%;
-            }
-
-            .letter-modal h2 {
-                font-size: 2rem;
-            }
-
-            .letter-modal p {
-                font-size: 1.1rem;
-            }
+            .sun { width: 95px; height: 95px; top: 10%; left: 5%; }
+            .heart-button { top: 18px; right: 18px; padding: 10px 20px; font-size: 0.82rem; }
+            .mode-toggle { top: 82px; right: 18px; width: 46px; height: 46px; font-size: 1.35rem; }
+            .letter { padding: 38px; }
+            .letter h2 { font-size: 1.95rem; }
+            .letter p { font-size: 1.08rem; }
         }
     </style>
 </head>
 <body>
-    <div class="scene-container" id="scene">
+    <div class="scene" id="scene">
         <div class="sky">
             <div class="sun"></div>
             <div class="moon"></div>
-            <div id="stars-container"></div>
+            <div id="stars"></div>
         </div>
-        
-        <div class="ocean">
-            <div class="glare" id="glare"></div>
-        </div>
-        
-        <div class="land">
-            <div id="flower-container"></div>
-        </div>
-        
-        <div id="bird-container"></div>
 
-        <button class="letter-button" id="letterButton">♥️ PRESS FOR A LOVE LETTER</button>
-        <button class="day-night-toggle" id="dayNightToggle">🌙</button>
+        <div class="ocean">
+            <div class="sun-glare" id="sunGlare"></div>
+            <div class="moon-glare"></div>
+            <div id="sparkles"></div>
+        </div>
+
+        <div class="land">
+            <div class="flowers" id="flowers"></div>
+        </div>
+
+        <div class="birds" id="birds"></div>
+
+        <button class="heart-button" id="heartBtn">♥️ PRESS FOR A LOVE LETTER</button>
+        <button class="mode-toggle" id="modeBtn">🌙</button>
     </div>
 
-    <div class="modal-overlay" id="letterOverlay">
-        <div class="letter-modal">
-            <button class="close-button" id="closeLetter">&times;</button>
-            <h2>My Lovely Prathna,</h2>
-            <p>
-                I know , you are fan of poetry, so I will try to write a poem for you. Hope it sounds okay.
-                Can Sound wierd too because I am not a poet but bear with me.
-                So here is the poem:
-
-                <p>
-                    "You are the sun in my life,
-                    "You are the reason I can relax even when am in stress",
-                    "You are the reason now I am calm minded just like ocean breeze",
-                    "You are the reason for the smile on my face like a brigh sky",
-                    "You are the reason for the joy in my heart like a blooming flower"
-
-                    And also :
-
-                    Welcome to our love garden! 🌸 
-                    You are the reason I can relax even when am in stress.
-                    You are the reason now I am calm minded just like ocean breeze.
-                    You are the reason for the smile on my face like a brigh sky.
-                    You are the reason for the joy in my heart like a blooming flower.
-                </p>
-            </p>
-            <p>
-                Whether in the bright light of morning or the quiet of the night, you are my constant scene.
-            </p>
-            <p class="signature">
-                Want to be your Forever yours,<br>
-                Shivansh
-            </p>
+    <div class="modal" id="modal">
+        <div class="letter">
+            <button class="close" id="closeBtn">&times;</button>
+            <h2>My Dearest,</h2>
+            <p>Just as the sun casts its unwavering glare upon the ocean, my thoughts turn to you. You are the warmth on the horizon and the steady breeze that makes even the tulips dance.</p>
+            <p>Whether in the bright light of morning or the quiet of the night, you are my constant scene.</p>
+            <p class="sign">Forever yours,<br>A Secret Admirer</p>
         </div>
     </div>
 
     <script>
         const scene = document.getElementById('scene');
-        const flowerContainer = document.getElementById('flower-container');
-        const birdContainer = document.getElementById('bird-container');
-        const starsContainer = document.getElementById('stars-container');
-        const dayNightToggle = document.getElementById('dayNightToggle');
-        const letterButton = document.getElementById('letterButton');
-        const letterOverlay = document.getElementById('letterOverlay');
-        const closeLetter = document.getElementById('closeLetter');
-        const glare = document.getElementById('glare');
+        const flowers = document.getElementById('flowers');
+        const birds = document.getElementById('birds');
+        const stars = document.getElementById('stars');
+        const sparkles = document.getElementById('sparkles');
+        const modal = document.getElementById('modal');
+        const heartBtn = document.getElementById('heartBtn');
+        const modeBtn = document.getElementById('modeBtn');
+        const closeBtn = document.getElementById('closeBtn');
+        const sunGlare = document.getElementById('sunGlare');
 
-        // Create Tulip SVG
-        function createTulipSVG() {
+        // Tulip
+        function createTulip() {
             const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-            svg.setAttribute('viewBox', '0 0 30 90');
+            svg.setAttribute('viewBox', '0 0 26 80');
             svg.innerHTML = `
-                <path d="M15 90 L15 30" stroke="#4A7C4E" stroke-width="2" fill="none"/>
-                <path d="M15 50 Q10 45 8 40 Q10 45 15 50" fill="#5D9C59"/>
-                <path d="M15 60 Q20 55 22 50 Q20 55 15 60" fill="#5D9C59"/>
-                <ellipse cx="15" cy="15" rx="12" ry="18" fill="#FFFFFF" opacity="0.95"/>
-                <ellipse cx="15" cy="15" rx="9" ry="15" fill="#F8F8FF" opacity="0.9"/>
-                <ellipse cx="15" cy="20" rx="6" ry="8" fill="#FFFACD" opacity="0.7"/>
+                <defs>
+                    <linearGradient id="ts${Math.random()}" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style="stop-color:#5FA855"/>
+                        <stop offset="100%" style="stop-color:#3D7A35"/>
+                    </linearGradient>
+                    <linearGradient id="tp${Math.random()}" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#FFFFFF"/>
+                        <stop offset="50%" style="stop-color:#FFFEF8"/>
+                        <stop offset="100%" style="stop-color:#F8F8F0"/>
+                    </linearGradient>
+                </defs>
+                <path d="M13 80 L13 26" stroke="url(#ts${Math.random()})" stroke-width="2.3" fill="none"/>
+                <ellipse cx="10" cy="46" rx="2.8" ry="6.5" fill="#5FA855" opacity="0.75"/>
+                <ellipse cx="16" cy="53" rx="2.8" ry="6.5" fill="#5FA855" opacity="0.75"/>
+                <ellipse cx="13" cy="13" rx="10" ry="16" fill="url(#tp${Math.random()})"/>
+                <ellipse cx="13" cy="13" rx="7.5" ry="13" fill="url(#tp${Math.random()})" opacity="0.65"/>
+                <ellipse cx="13" cy="17" rx="4.5" ry="6.5" fill="#FFFACD" opacity="0.45"/>
             `;
             return svg;
         }
 
-        // Create Rose SVG
-        function createRoseSVG() {
+        // Rose
+        function createRose() {
             const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-            svg.setAttribute('viewBox', '0 0 35 95');
+            svg.setAttribute('viewBox', '0 0 30 85');
             svg.innerHTML = `
-                <path d="M17.5 95 L17.5 30" stroke="#4A7C4E" stroke-width="2.5" fill="none"/>
-                <path d="M17.5 55 Q12 50 9 45 Q12 50 17.5 55" fill="#5D9C59"/>
-                <circle cx="17.5" cy="15" r="14" fill="#DC143C"/>
-                <circle cx="17.5" cy="15" r="10" fill="#FF6B6B" opacity="0.7"/>
-                <circle cx="17.5" cy="15" r="6" fill="#8B0000" opacity="0.8"/>
-                <ellipse cx="12" cy="12" rx="5" ry="6" fill="#FF4444" opacity="0.6"/>
-                <ellipse cx="23" cy="12" rx="5" ry="6" fill="#FF4444" opacity="0.6"/>
+                <defs>
+                    <radialGradient id="r1${Math.random()}">
+                        <stop offset="0%" style="stop-color:#FF6B6B"/>
+                        <stop offset="50%" style="stop-color:#DC143C"/>
+                        <stop offset="100%" style="stop-color:#B22222"/>
+                    </radialGradient>
+                </defs>
+                <path d="M15 85 L15 26" stroke="#5FA855" stroke-width="2.3" fill="none"/>
+                <ellipse cx="11" cy="50" rx="3" ry="6.5" fill="#5FA855" opacity="0.75"/>
+                <circle cx="15" cy="13" r="12" fill="url(#r1${Math.random()})"/>
+                <circle cx="15" cy="13" r="8.5" fill="#FF8888" opacity="0.7"/>
+                <circle cx="15" cy="13" r="4.5" fill="#8B0000" opacity="0.65"/>
+                <ellipse cx="10.5" cy="11" rx="3.8" ry="4.8" fill="#FF6B6B" opacity="0.55"/>
+                <ellipse cx="19.5" cy="11" rx="3.8" ry="4.8" fill="#FF6B6B" opacity="0.55"/>
             `;
             return svg;
         }
 
-        // Create Peony SVG
-        function createPeonySVG() {
+        // Peony
+        function createPeony() {
             const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-            svg.setAttribute('viewBox', '0 0 40 100');
+            svg.setAttribute('viewBox', '0 0 34 90');
             svg.innerHTML = `
-                <path d="M20 100 L20 35" stroke="#4A7C4E" stroke-width="2.5" fill="none"/>
-                <path d="M20 60 Q25 55 28 50 Q25 55 20 60" fill="#5D9C59"/>
-                <circle cx="20" cy="18" r="16" fill="#FFB6C1" opacity="0.9"/>
-                <circle cx="13" cy="15" r="10" fill="#FFC0CB" opacity="0.8"/>
-                <circle cx="27" cy="15" r="10" fill="#FFC0CB" opacity="0.8"/>
-                <circle cx="13" cy="23" r="10" fill="#FFC0CB" opacity="0.8"/>
-                <circle cx="27" cy="23" r="10" fill="#FFC0CB" opacity="0.8"/>
-                <circle cx="20" cy="18" r="7" fill="#FFE4B5" opacity="0.9"/>
+                <path d="M17 90 L17 30" stroke="#5FA855" stroke-width="2.3" fill="none"/>
+                <ellipse cx="20" cy="56" rx="3.2" ry="7.5" fill="#5FA855" opacity="0.75"/>
+                <circle cx="17" cy="15" r="14" fill="#FFD5E5" opacity="0.9"/>
+                <circle cx="11" cy="13" r="8.5" fill="#FFC0CB" opacity="0.8"/>
+                <circle cx="23" cy="13" r="8.5" fill="#FFC0CB" opacity="0.8"/>
+                <circle cx="11" cy="19" r="8.5" fill="#FFB6C1" opacity="0.8"/>
+                <circle cx="23" cy="19" r="8.5" fill="#FFB6C1" opacity="0.8"/>
+                <circle cx="17" cy="15" r="5.5" fill="#FFEB99" opacity="0.75"/>
             `;
             return svg;
         }
 
-        // Create Bird SVG
-        function createBirdSVG() {
+        // Bird
+        function createBird() {
             const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-            svg.setAttribute('viewBox', '0 0 40 25');
+            svg.setAttribute('viewBox', '0 0 48 28');
             svg.innerHTML = `
-                <g class="bird-body">
-                    <ellipse cx="20" cy="12" rx="8" ry="5" fill="currentColor"/>
-                    <path d="M12 12 Q8 5 2 8 M28 12 Q32 5 38 8" stroke="currentColor" stroke-width="2" fill="none" class="wings">
-                        <animate attributeName="d" 
-                            values="M12 12 Q8 5 2 8 M28 12 Q32 5 38 8;
-                                    M12 12 Q8 8 2 12 M28 12 Q32 8 38 12;
-                                    M12 12 Q8 5 2 8 M28 12 Q32 5 38 8"
-                            dur="0.5s" repeatCount="indefinite"/>
-                    </path>
-                </g>
+                <ellipse cx="24" cy="14" rx="8.5" ry="5.5" fill="#F8F8F8"/>
+                <path d="M15.5 14 Q9.5 7.5 2.5 9.5 Q8 11.5 15.5 14" fill="#F5F5F5">
+                    <animate attributeName="d" 
+                        values="M15.5 14 Q9.5 7.5 2.5 9.5 Q8 11.5 15.5 14;
+                                M15.5 14 Q9.5 11 2.5 14 Q8 13 15.5 14;
+                                M15.5 14 Q9.5 7.5 2.5 9.5 Q8 11.5 15.5 14"
+                        dur="0.55s" repeatCount="indefinite"/>
+                </path>
+                <path d="M32.5 14 Q38.5 7.5 45.5 9.5 Q40 11.5 32.5 14" fill="#F5F5F5">
+                    <animate attributeName="d" 
+                        values="M32.5 14 Q38.5 7.5 45.5 9.5 Q40 11.5 32.5 14;
+                                M32.5 14 Q38.5 11 45.5 14 Q40 13 32.5 14;
+                                M32.5 14 Q38.5 7.5 45.5 9.5 Q40 11.5 32.5 14"
+                        dur="0.55s" repeatCount="indefinite"/>
+                </path>
             `;
             return svg;
         }
 
-        // Populate Flowers (heavily on land)
-        const flowerCount = 200;
+        // Generate flowers - 380 flowers!
         const flowerTypes = [
-            { type: 'tulip', create: createTulipSVG, weight: 0.75 },
-            { type: 'rose', create: createRoseSVG, weight: 0.15 },
-            { type: 'peony', create: createPeonySVG, weight: 0.10 }
+            { create: createTulip, class: 'tulip', weight: 0.79 },
+            { create: createRose, class: 'rose', weight: 0.13 },
+            { create: createPeony, class: 'peony', weight: 0.08 }
         ];
 
-        for (let i = 0; i < flowerCount; i++) {
+        for (let i = 0; i < 380; i++) {
             const flower = document.createElement('div');
             
-            // Choose flower type based on weight
             const rand = Math.random();
-            let flowerType;
-            if (rand < 0.75) flowerType = flowerTypes[0];
-            else if (rand < 0.90) flowerType = flowerTypes[1];
-            else flowerType = flowerTypes[2];
+            let type = flowerTypes[0];
+            if (rand > 0.79 && rand <= 0.92) type = flowerTypes[1];
+            else if (rand > 0.92) type = flowerTypes[2];
             
-            flower.className = `flower ${flowerType.type}`;
-            flower.appendChild(flowerType.create());
+            flower.className = `flower ${type.class}`;
+            flower.appendChild(type.create());
 
-            // Position based on land clip-path: polygon(0% 75%, 100% 30%, 100% 100%, 0% 100%)
+            // Position: polygon(0% 70%, 100% 24%, 100% 100%, 0% 100%)
             const x = Math.random();
-            const yTopBoundary = 0.75 - (0.45 * x); // Line from (0, 0.75) to (1, 0.30)
-            const yPosition = yTopBoundary + Math.random() * (1 - yTopBoundary);
+            const topLine = 0.70 - (0.46 * x);
+            const y = topLine + Math.random() * (1 - topLine);
             
-            flower.style.left = (x * 100) + '%';
-            flower.style.bottom = ((1 - yPosition) * 100) + '%';
+            flower.style.left = `${x * 100}%`;
+            flower.style.bottom = `${(1 - y) * 100}%`;
 
-            // Depth and scale
-            const depth = yPosition;
-            const scale = 0.6 + (depth * 0.8);
+            const depth = (y - topLine) / (1 - topLine);
+            const scale = 0.48 + (depth * 1.3);
             flower.style.transform = `scale(${scale})`;
-            flower.style.zIndex = Math.floor(depth * 50);
+            flower.style.zIndex = Math.floor(depth * 90);
 
-            // Varied swaying animation
-            const swayType = Math.floor(Math.random() * 3) + 1;
-            flower.style.animation = `sway-${swayType} ${6 + Math.random() * 6}s infinite ease-in-out`;
-            flower.style.animationDelay = `${Math.random() * 5}s`;
+            const swayType = ['sway-1', 'sway-2', 'sway-3', 'sway-4'][Math.floor(Math.random() * 4)];
+            const duration = 4.5 + Math.random() * 8;
+            flower.style.animation = `${swayType} ${duration}s infinite ease-in-out`;
+            flower.style.animationDelay = `${Math.random() * duration}s`;
 
-            flowerContainer.appendChild(flower);
+            flowers.appendChild(flower);
         }
 
-        // Populate Birds
-        const birdCount = 8;
-        for (let i = 0; i < birdCount; i++) {
+        // Generate birds
+        const flyPatterns = ['fly-1', 'fly-2', 'fly-3', 'fly-4'];
+        for (let i = 0; i < 12; i++) {
             const bird = document.createElement('div');
             bird.className = 'bird';
-            bird.style.width = (25 + Math.random() * 20) + 'px';
-            bird.style.height = (15 + Math.random() * 10) + 'px';
+            bird.style.width = `${28 + Math.random() * 26}px`;
+            bird.style.height = `${18 + Math.random() * 14}px`;
             
-            const birdSVG = createBirdSVG();
-            bird.appendChild(birdSVG);
+            bird.appendChild(createBird());
 
-            const pathType = (i % 3) + 1;
-            const duration = 20 + Math.random() * 15;
-            bird.style.animation = `fly-path-${pathType} ${duration}s infinite linear`;
+            const pattern = flyPatterns[i % 4];
+            const duration = 16 + Math.random() * 20;
+            bird.style.animation = `${pattern} ${duration}s infinite linear`;
             bird.style.animationDelay = `-${Math.random() * duration}s`;
 
-            birdContainer.appendChild(bird);
+            birds.appendChild(bird);
         }
 
-        // Populate Stars
-        for (let i = 0; i < 150; i++) {
+        // Generate stars
+        for (let i = 0; i < 220; i++) {
             const star = document.createElement('div');
             star.className = 'star';
-            star.style.left = Math.random() * 100 + '%';
-            star.style.top = Math.random() * 60 + '%';
-            star.style.width = (1 + Math.random() * 2) + 'px';
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.top = `${Math.random() * 62}%`;
+            star.style.width = `${1 + Math.random() * 2.3}px`;
             star.style.height = star.style.width;
-            star.style.animationDelay = Math.random() * 3 + 's';
-            star.style.animationDuration = (2 + Math.random() * 2) + 's';
-            starsContainer.appendChild(star);
+            star.style.animationDelay = `${Math.random() * 3}s`;
+            star.style.animationDuration = `${2.2 + Math.random() * 1.8}s`;
+            stars.appendChild(star);
         }
 
-        // Day/Night Toggle
-        dayNightToggle.addEventListener('click', () => {
-            const isNight = scene.classList.toggle('night-mode');
-            dayNightToggle.textContent = isNight ? '☀️' : '🌙';
-            if (isNight) {
-                glare.classList.add('moonlight');
-            } else {
-                glare.classList.remove('moonlight');
-            }
+        // Generate sparkles
+        for (let i = 0; i < 28; i++) {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.style.left = `${4 + Math.random() * 22}%`;
+            sparkle.style.top = `${Math.random() * 75}%`;
+            sparkle.style.width = `${2 + Math.random() * 3.5}px`;
+            sparkle.style.height = sparkle.style.width;
+            sparkle.style.animationDelay = `${Math.random() * 3}s`;
+            sparkles.appendChild(sparkle);
+        }
+
+        // Day/Night toggle
+        modeBtn.addEventListener('click', () => {
+            const isNight = scene.classList.toggle('night');
+            modeBtn.textContent = isNight ? '☀️' : '🌙';
         });
 
-        // Letter Modal
-        letterButton.addEventListener('click', () => {
-            letterOverlay.classList.add('active');
-        });
-
-        closeLetter.addEventListener('click', () => {
-            letterOverlay.classList.remove('active');
-        });
-
-        letterOverlay.addEventListener('click', (e) => {
-            if (e.target === letterOverlay) {
-                letterOverlay.classList.remove('active');
-            }
+        // Modal
+        heartBtn.addEventListener('click', () => modal.classList.add('show'));
+        closeBtn.addEventListener('click', () => modal.classList.remove('show'));
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) modal.classList.remove('show');
         });
     </script>
 </body>
